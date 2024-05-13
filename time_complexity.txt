@@ -1,0 +1,121 @@
+example 1:
+        int i; 
+        i = 0; =>  1
+        for (i=0; i < n; i++){ => n
+            print(i); => 1
+        }
+
+        time = 1 + 1 + n;
+        time = O(n);
+
+example 2:
+        int i; 
+        i = 0; =>  1
+        for (i=0; i < n; i++){ => n
+            print(i); => 1
+        }
+
+          for (j=0; j < n; i++){ => n
+            for (k=0; k < n; i++){ => n
+                print(j+k) =>1
+            }
+        }
+
+        time = 1 + n + (n*n) + 1 = 2 + n + n^2 
+        time = O(n^2)
+            hint: n*n => because we have nested for loop 
+
+example 3:
+        int i; 
+        i = 0; =>  1
+        for (i=1; i < n; i*2){ => n
+            print(i); => 1
+        }           
+
+        time = 1 + log n;
+        time = O(log n);
+            hint: log n => because i*2 or i/2;
+
+example 4:
+        int j = 0, i = 0;
+          for (i; i < n; i++){ => n
+            for (j; i < n; i/3){ => log n
+                print(i+j) =>1
+            }
+        }
+
+        time = 1 + n * log n;
+        time = O(n log n)
+
+example 5:
+        int j = 0, i = 0, k= 0;
+
+          for (i; i < n; i++){ => n
+            for (j; i < n; i++){ =>n
+                for(k; k< n; k*2){ => log n
+                    print (i+j+k)
+                }
+            }
+        }
+
+        time = 1 + (n*n* log n);
+        time = 1 + n^2 * log n;
+        time = O(n^2 log n);
+
+example 6:
+        int j = 0, i = n/2, k= 0;
+          for (i; i < n; i++){ => n
+            for (j; i < n; j*2){ =>n
+                for(k; k< n; k*2){ => log n
+                    print (i+j+k)
+                }
+            }
+        }
+
+        time = 1 + (log n * log n);
+        time = 1 + log n^2
+
+        hint n/2 = constant time = 1
+
+example 7:
+        while(n > 2){
+            code
+
+            n = n / 2
+        }        
+        time = O(log n)
+
+
+example 8: recursive function 
+        function fibonacci($n, $first_num = 0, $second_num = 1) {
+            if($n == 0) {
+                return;
+            }
+            echo $first_num . ", ";
+            $next_num = $first_num + $second_num;
+            fibonacci($n - 1, $second_num, $next_num);
+    }
+
+    time = O(2^n)
+
+example 9: recursive function
+    function getHalf(float $n){
+        if($n < 1){
+            return $n;
+        }
+        print ($n);
+        getHalf(n/2);
+    }
+
+    time = O(log n)
+
+
+hint: 
+    for($i = 0; i <n ; i++){
+        func();
+    }
+
+    hint: here we calculate time by :
+        1- get the time of loop = n;
+        2- go inside the function and start to calculate the time 
+        3- result : n * the calculation of the function
