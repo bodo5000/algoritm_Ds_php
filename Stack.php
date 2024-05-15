@@ -2,7 +2,7 @@
 
 class Stack
 {
-    private int $top;
+    public int $top;
     private int $size;
     private array $stack;
 
@@ -13,12 +13,13 @@ class Stack
         $this->stack = [];
     }
 
-    public function get_top(int &$element)
+    // 
+    public function get_top()
     {
         if ($this->isEmpty()) {
             echo "stack is Empty \n";
         } else {
-            $element = $this->stack[$this->top];
+            return $this->stack[$this->top];
         }
     }
 
@@ -69,11 +70,10 @@ class Stack
     }
 }
 
-$stack = new Stack(3);
+// $stack = new Stack(3);
 
-$stack->push(2)->push(3)->push(10)->getStackData();
-$y = 0;
+// $stack->push(2)->push(3)->push(10)->getStackData();
+// $y = 0;
 
-$stack->get_top($y);
+// echo 'the top of the stack is: ' . $stack->get_top();
 
-echo 'the top of the stack is: ' . $y;
