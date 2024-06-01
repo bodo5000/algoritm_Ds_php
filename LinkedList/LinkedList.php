@@ -79,6 +79,81 @@ class LinkedList
         }
     }
 
+    public function deleteFirst()
+    {
+        if ($this->isEmpty())
+            echo 'empty List';
+        elseif ($this->length == 1)
+            $this->length--;
+        else {
+            $this->head = $this->head->next;
+            $this->length--;
+        }
+
+    }
+
+    public function deleteLast()
+    {
+        $currentNode = $this->head->next;
+        $prevNode = $this->head;
+
+        if ($this->isEmpty()) {
+            echo 'list empty';
+        } elseif ($this->length == 1) {
+            $this->length--;
+        } else {
+
+            while ($currentNode != $this->tail) {
+                $prevNode = $currentNode;
+                $currentNode = $currentNode->next;
+
+            }
+
+            $prevNode->next = null;
+            $this->tail = $prevNode;
+            $this->length--;
+        }
+    }
+
+    public function delete($item)
+    {
+        $current = $this->head;
+        $prev = NULL;
+
+        if ($this->isEmpty()) {
+            echo 'list is empty';
+            return;
+        }
+
+        while ($current !== NULL) {
+            if ($current->item === $item) {
+                if ($prev === NULL) {
+                    $this->head = $current->next;
+                    $this->length--;
+                } else {
+                    $prev->next = $current->next;
+                }
+                return;
+            }
+            $prev = $current;
+            $current = $current->next;
+        }
+    }
+
+    public function reverse()
+    {
+        //example: from    30 -> 20 -> 100-> null     TO     null <- 30 <- 20 <- 100  head = {100, node};
+        $prev = NULL;
+        $current = $this->head;
+        while ($current !== NULL) {
+            $next = $current->next;
+            $current->next = $prev;
+            $prev = $current;
+            $current = $next;
+        }
+        $this->head = $prev;
+    }
+
     public function display()
     {
         $current = $this->head;
@@ -86,6 +161,11 @@ class LinkedList
             echo $current->item . " ";
             $current = $current->next;
         }
+    }
+
+    public function getCurrent()
+    {
+        return $this->head->item;
     }
 }
 
@@ -97,5 +177,11 @@ $linked->insertLast(100);
 $linked->insertAt(1, 33000);
 $linked->insertAt(0, 5000);
 $linked->insertAt(5, 200);
+$linked->delete(33000);
+$linked->deleteFirst();
+$linked->deleteLast();
+$linked->display();
+echo "\n----------------\n";
+$linked->reverse();
 
 $linked->display();
